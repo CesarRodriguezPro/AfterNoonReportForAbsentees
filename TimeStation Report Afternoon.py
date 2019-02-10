@@ -29,13 +29,10 @@ class ReportEmployeesMissingAfterLunch:
 
         self.current_date = datetime.date.today().strftime('%Y-%m-%d')
 
-        self.url = f"https://api.mytimestation.com/v0.1/reports/?api_key={key_api}&id=34&Report_StartDate={self.current_date}&Report_EndDate={self.current_date}&exportformat=csv"
+        self.url_morning = f"https://api.mytimestation.com/v0.1/reports/?api_key={key_api}&id=34&Report_StartDate={self.current_date}&Report_EndDate={self.current_date}&exportformat=csv"
         self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={key_api}&id=37&exportformat=csv"
 
-        # self.url = 'Morning.csv'
-        # self.url_current = 'current.csv'
-
-        self.raw_data = pd.read_csv(self.url)
+        self.raw_data = pd.read_csv(self.url_morning)
         self.for_morning = self.raw_data[self.raw_data['Activity'].str.contains('Punch In')]
 
         self.current_data = pd.read_csv(self.url_current)
