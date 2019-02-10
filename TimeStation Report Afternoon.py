@@ -74,6 +74,12 @@ class ReportEmployeesMissingAfterLunch:
         print('[+] - Employees didn\'t work in the morning')
         for number, x in enumerate(missing_morning.values(), 1):
             print(f"{number:5}|{x['Name']:^25}|{x['Current Department']}")
+        
+        print('\n\n')
+        print('-'*75)
+        answer = input('if you would like to send the report \n')
+        if answer.lower()[0] == 'y':
+            self.send_report()
 
     def send_report(self):
 
@@ -98,7 +104,6 @@ class ReportEmployeesMissingAfterLunch:
                     text_save.writelines('{:5}. {:30} {}\n'.format(number, items['Name'], items['Current Department']))
 
             text_save.write("\nCesar Rodriguez \nIT Administrator - Automatic System  \nIBK Construction group")
-
         email_send()
 
     def __safe_sheet_for_testing(self):
@@ -109,5 +114,5 @@ class ReportEmployeesMissingAfterLunch:
 
 if __name__ == '__main__':
 
-    x = ReportEmployeesMissingAfterLunch()
-    x.send_report()
+    active = ReportEmployeesMissingAfterLunch()
+    active.display_report()
